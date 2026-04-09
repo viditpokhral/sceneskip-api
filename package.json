@@ -1,0 +1,22 @@
+{
+  "name": "sceneskip-api",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch --env-file=.env src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.13",
+    "@supabase/supabase-js": "^2.102.1",
+    "dotenv": "^17.4.1",
+    "hono": "^4.12.12"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}
