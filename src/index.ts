@@ -7,9 +7,10 @@ import { timestampsRouter } from './routes/timestamps.js';
 import { submissionsRouter } from './routes/submissions.js';
 import { adminRouter } from './routes/admin.js';
 import { rateLimit } from './middleware/rateLimit.js';
+import { showsRouter } from './routes/shows.js';
 
 if (process.env.NODE_ENV !== 'production') {
-  const { config } = await import('dotenv').catch(() => ({ config: () => {} }));
+  const { config } = await import('dotenv').catch(() => ({ config: () => { } }));
   (config as () => void)();
 }
 
@@ -20,7 +21,9 @@ app.use(
   '*',
   cors({
     origin: (origin) =>
-      origin.startsWith('chrome-extension://') || origin === 'http://localhost:3000'
+      origin.startsWith('chrome-extension://') ||
+        origin.startsWith('moz-extension://') ||
+        origin === 'http://localhost:3000'
         ? origin
         : '',
     allowMethods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -36,6 +39,8 @@ app.use('/submissions/*', rateLimit({ limit: 10, windowMs: 60_000 }));
 app.route('/submissions', submissionsRouter);
 
 app.route('/admin', adminRouter);
+
+app.route('/shows', showsRouter);
 
 const port = Number(process.env.PORT ?? 3000);
 serve({ fetch: app.fetch, port }, () => {

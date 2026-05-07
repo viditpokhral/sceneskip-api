@@ -24,6 +24,3 @@ export const db = createClient(url, key, {
   auth: { persistSession: false },
 });
 
-console.log("SUPABASE KEY START:", key?.slice(0, 20));
-console.log("URL:", process.env.SUPABASE_URL);
-console.log("SERVICE ROLE:", process.env.SUPABASE_SERVICE_ROLE_KEY?.length);

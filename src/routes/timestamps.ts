@@ -62,8 +62,8 @@ function toTimestamp(row: {
 }) {
   return {
     id: row.id,
-    startTime: row.start_time,
-    endTime: row.end_time,
+    start_time: row.start_time,
+    end_time: row.end_time,
     category: row.category,
     title: row.title,
   };

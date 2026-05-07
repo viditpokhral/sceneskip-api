@@ -101,7 +101,7 @@ adminRouter.patch('/submissions/:id', async (c) => {
     .from('submissions')
     .update({
       status: action === 'approve' ? 'approved' : 'rejected',
-            reviewed_at: new Date().toISOString(),
+      reviewed_at: new Date().toISOString(),
       ...(note ? { admin_note: String(note) } : {}),
     })
     .eq('id', id);
@@ -149,7 +149,7 @@ adminRouter.post('/timestamps', async (c) => {
 
   const { id, title, startTime, endTime, category } = body as Record<string, unknown>;
 
-  const VALID_CATEGORIES = new Set(['nudity', 'violence', 'gore', 'drug_use', 'profanity']);
+  const VALID_CATEGORIES = new Set(['sex_nudity', 'violence_gore', 'filler', 'others']);
   const errors: string[] = [];
 
   if (typeof id !== 'string' || id.trim().length < 2) errors.push('id required');
